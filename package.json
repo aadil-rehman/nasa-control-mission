@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "morgan": "^1.10.0",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "react-scripts": "^5.0.1"
   }
 }
