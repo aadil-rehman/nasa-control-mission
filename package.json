@@ -7,7 +7,7 @@
     "server": "cd server && npm run watch",
     "client": "cd client && npm start",
     "watch": "concurrently \"npm run server\" \"npm run client\"",
-    "deploy": "npm run build --prefix client && npm start --prefix server",
+    "deploy": "cd client && npm run build && cd ../server && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
