@@ -19,20 +19,6 @@ async function saveLaunches(launch) {
 	);
 }
 
-const launch = {
-	flightNumber: 100, //flight_number
-	mission: "Kepler Exploration X", //name
-	rocket: "Explorer IS1", //rocket.name
-	launchDate: new Date("December 27, 2030"), //date_local
-	target: "Kepler-442 b", //not applicable
-	customers: ["NASA", "WORK"], //payload.customers for each payload
-	upcoming: true, //upcoming
-	success: true, //success
-};
-
-saveLaunches(launch);
-// launches.set(launch.flightNumber, launch);
-
 async function findLaunch(filter) {
 	await launches.findOne(filter);
 }
@@ -50,14 +36,18 @@ async function getLatestFlightNumber() {
 	return latestLaunch.flightNumber;
 }
 
-async function getAllLaunches() {
-	return await launches.find(
-		{},
-		{
-			_id: 0,
-			__v: 0,
-		}
-	);
+async function getAllLaunches(skip, limit) {
+	return await launches
+		.find(
+			{},
+			{
+				_id: 0,
+				__v: 0,
+			}
+		)
+		.sort({ flightNumber: 1 })
+		.skip(skip)
+		.limit(limit);
 }
 
 async function scheduleNewLaunch(launch) {
